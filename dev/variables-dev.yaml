@@ -1,0 +1,11 @@
+MONGODB_HOST: mongodb-dev.jasritha.tech
+REDIS_HOST: redis-dev.jasritha.tech
+CATALOGUE_HOST: catalogue.app-dev.jasritha.tech
+USER_HOST: user.app-dev.jasritha.tech
+CART_HOST: cart.app-dev.jasritha.tech
+SHIPPING_HOST: shipping.app-dev.jasritha.tech
+PAYMENT_HOST: payment.app-dev.jasritha.tech
+MYSQL_HOST: mysql-dev.jasritha.tech
+RABBITMQ_HOST: rabbitmq-dev.jasritha.tech
+NEXUS_URL: http://172.31.5.248:8081/repository
+group_id: "com/roboshop"

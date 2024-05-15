@@ -1,0 +1,16 @@
+- name: appsetup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-setup
+- name: java installation
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: java
+- name:  mysql load
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: mysqlload
+- name: system daemon
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemdaemon

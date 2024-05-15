@@ -1,0 +1,22 @@
+- name: appsetup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-setup
+- name: nodejs installation
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+- name: mongodb load
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: mongodbload
+- name: system daemon
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemdaemon
+- name: deployment
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: deployment
+  tags:
+  - deployment

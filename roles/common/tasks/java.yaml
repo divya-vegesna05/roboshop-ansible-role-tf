@@ -1,0 +1,13 @@
+- name: Install maven
+  ansible.builtin.package:
+    name: maven
+    state: present
+- name: Change the working directory to /app and run the command 
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+- name: move shipping jar file
+  ansible.builtin.shell: "mv target/{{component}}-{{VERSION}}.jar {{component}}.jar"
+  args:
+    chdir: /app
+

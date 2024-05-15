@@ -1,0 +1,48 @@
+- name: "stop {{component}}"
+  ansible.builtin.service:
+    name: "{{component}}"
+    state: stopped
+  tags:
+  - deployment
+- name: remove app directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+  tags:
+  - deployment
+- name: create app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+  tags:
+  - deployment
+- name: Download application
+  ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/{{component}}.zip
+    dest: /tmp
+  tags:
+  - deployment
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/{{component}}.zip
+    dest: /app
+    remote_src: yes
+  tags:
+  - deployment
+- name: Enable and start {{component}}
+  ansible.builtin.service:
+    name: "{{component}}"
+    state: started
+    enabled: true
+  tags:
+  - deployment
+- name: enable nodejs command
+  ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+- name: Install nodejs
+  ansible.builtin.package:
+    name: nodejs
+    state: present
+- name: Change the working directory to /app and run the command 
+  ansible.builtin.command: npm install
+  args:
+    chdir: /app
